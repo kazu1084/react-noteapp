@@ -1,0 +1,30 @@
+button {
+    background: none;
+    border:none;
+    color: #08c;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.app-sidebar {
+    width: 30%;
+    height: 100vh;
+    border-right: 1px solid #ddd;
+}
+
+.app-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+ }
+ 
+.app-sidebar-header h1 {
+    margin: 0;
+} 
+
+.app-sidebar-notes {
+   height: calc(100vh - 78px);
+   overflow-y: scroll;
+}
