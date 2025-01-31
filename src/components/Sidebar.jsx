@@ -1,21 +1,26 @@
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({onAddNote, notes, onDeleteNote}) => {
   return( 
   <div className = "app-sidebar">
     <div className = "app-sidebar-header">
       <h1>ノート</h1>
-      <button>追加</button>
+      <button onClick = {onAddNote}>追加</button>
     </div>
     <div className = "app-sidebar-notes">
-      <div className = "app-sidebar-note">
+      {notes.map((note) => (
+      <div className = "app-sidebar-note" key = {note.id}>
         <div className = "note-title">
-          <strong>タイトル</strong>
-          <button>削除</button>
-          <p>ノートの内容です。</p>
-          <small>最後の修正日:xxxx/xx/xx</small>
-        </div>
-      </div>    
+          <strong>{note.title}</strong>
+          <button onClick = {() => onDeleteNote(note.id)}>削除</button>
+        </div>  
+          <p>{note.content}</p>
+          <small>{new Date(note.modDate).toLocaleDateString("ja-JP",{
+            hour: "2-digit",
+            minute: "2-digit",
+          })}</small>
+      </div>
+      ))}
     </div>
   </div>
   );
