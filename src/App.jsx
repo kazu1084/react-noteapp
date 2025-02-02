@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import Main from './components/Main.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import React, { useState } from 'react';
@@ -8,7 +8,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [activeNote,setActiveNote] = useState(false);
   const onAddNote = () => {
-     console.log("新しいノートが追加されました。") 
+     console.log("新しいノートが追加されました。") ;
      const newNote = {
        id: uuid(),
        title: "新しいノート",
@@ -24,6 +24,22 @@ function App() {
     setNotes(filterNotes);
   };
   
+  const getActiveNote = () => {
+    return notes.find((note) => note.id === activeNote);
+  };
+  
+  const onUpdateNote = (updatedNote) => {
+    // 修正された新しいノートの配列を返す
+    const updateNotesArray = notes.map((note) => {
+      if(note.id === updatedNote.id ) {
+        return updatedNote;
+      }else{
+        return note;
+      }
+    });
+    setNotes(updateNotesArray);
+  };
+  
   return (
     <div className = "App">
       <Sidebar onAddNote = {onAddNote} 
@@ -32,7 +48,9 @@ function App() {
         activeNote = {activeNote}
         setActiveNote = {setActiveNote}
       />
-      <Main />
+      <Main activeNote = {getActiveNote()}
+        onUpdateNote = {onUpdateNote}
+      />
     </div>
   )
 }
