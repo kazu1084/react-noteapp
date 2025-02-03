@@ -1,6 +1,8 @@
 import "./Sidebar.css";
 
 const Sidebar = ({onAddNote, notes, onDeleteNote, activeNote, setActiveNote}) => {
+  
+  const sortedNotes = notes.sort((a,b) => b.modDate - a.modDate);
   return( 
   <div className = "app-sidebar">
     <div className = "app-sidebar-header">
